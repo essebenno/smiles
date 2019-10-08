@@ -1,5 +1,5 @@
 var allMyBalls = [];
-var amountOfBalls = 58;
+var amountOfBalls = 30;
 var aBall = new Ball(300, 300, 50);
 var ballColors = ['#ffd700', '#2274a5', '#f75c03' , '#d90368' , '#17bebb', 0];
 
