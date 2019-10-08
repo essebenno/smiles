@@ -1,57 +1,97 @@
-var mySmile ;
+var allMyBalls = [];
+var amountOfBalls = 58;
+var aBall = new Ball(300, 300, 50);
+var ballColors = ['#ffd700', '#2274a5', '#f75c03' , '#d90368' , '#17bebb', 0];
+
 
 function preload(){
   // put preload code here
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  background(0);
+  createCanvas(windowWidth,windowHeight);
+  background(240);
 
-  mySmile = new Smile (random()*windowWidth, random()*windowHeight, 60, 2);
+  for(var i = 0 ; i < amountOfBalls ; i++){
+    var tempX = random() * windowWidth;
+    var tempY = random() * windowHeight;
+    var tempRad = random() * 50 + 10;
+    var tempColor = random() * 5;
+    tempColor = Math.floor(tempColor);
+
+    var tempBall = new Ball (tempX, tempY, tempRad, ballColors[tempColor]);
+
+    allMyBalls.push(tempBall);
+  }
+  console.log(allMyBalls.length);
 }
 
 function draw() {
-  stroke('white');
-  fill ('black');
 
-  //mySmile.move();
-  mySmile.display();
-  // put drawing code here
+  //aBall.move();
+  //aBall.display();
+  noStroke();
+  for(var i  = 0; i < allMyBalls.length; i++){
+    var tempBall = allMyBalls[i];
+    tempBall.move();
+    tempBall.display();
+  }
 }
 
-function Smile (_xPos, _yPos, _size, _speed ){
-  this.x = _xPos;
-  this.y = _yPos;
-  this.size = _size;
+// function mouseReleased(){
+//   console.log('released');
+//   fill('deeppink');
+//   ellipse(mouseX,mouseY,random( 20, 50))
+//}
 
-  this.speed = _speed;
+function Ball(_x, _y, _diameter, _color){
+  this.size = _diameter;
+  this.x    = _x;
+  this.y    = _y;
+  this.color = _color;
+  this.speed = 1;
 
-  var xIncrease = 1;
-  var yIncrease = 1;
+  var xIncrease = this.speed;
+  var yIncrease = this.speed;
 
   this.move = function(){
     this.x += this.speed * xIncrease;
     this.y += this.speed * yIncrease;
 
-    if(this.x > windowWidth || this.x <0 ){
-      xIncrease = -xIncrease;
-    }
-    if(this.y > windowHeight || this.y <0 ){
+    if(this.y > windowHeight  || this.y < 0 ){
       yIncrease = -yIncrease;
     }
-  }
+
+    if(this.x > windowWidth  || this.x < 0 ){
+      xIncrease = -xIncrease;
+    }
+   }
 
   this.display = function(){
-    ellipse(this.x, this.y, this.size);
+    fill(this.color);
+    ellipse(this.x , this.y , this.size);
 
-    //push();
-      translate(0,0);
-      //eye sx
-      fill('white');
-      ellipse(this.x-10,this.y-10,20);
+  //smile attempt
+    push();
+    translate(this.x, this.y);
+    //face
+    //ellipse(0,0,this.size);
 
-    //pop();
+    //eyes
+    noStroke();
+    fill(0);
+    ellipse(-this.size/4, -this.size/5, this.size/10);
+    ellipse(this.size/4, -this.size/5, this.size/10 );
+
+
+
+    //mouth
+    fill(255);
+    angleMode(DEGREES);
+    //arc(0, this.size/4, this.size/4, 0, 180, PIE);
+    arc(0,0,this.size/2,this.size/2,0, 180, PIE);
+
+    pop();
 
   }
 }
