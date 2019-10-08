@@ -15,7 +15,7 @@ function setup() {
   for(var i = 0 ; i < amountOfBalls ; i++){
     var tempX = random() * windowWidth;
     var tempY = random() * windowHeight;
-    var tempRad = random() * 80 + 30;
+    var tempRad = random() * 50 + 20;
     var tempColor = random() * 5;
     tempColor = Math.floor(tempColor);
 
