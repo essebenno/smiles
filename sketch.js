@@ -49,7 +49,7 @@ function Ball(_x, _y, _diameter, _color){
   this.x    = _x;
   this.y    = _y;
   this.color = _color;
-  this.speed = 3;
+  this.speed = 1;
 
   var xIncrease = this.speed;
   var yIncrease = this.speed;
