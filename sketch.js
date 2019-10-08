@@ -15,7 +15,7 @@ function setup() {
   for(var i = 0 ; i < amountOfBalls ; i++){
     var tempX = random() * windowWidth;
     var tempY = random() * windowHeight;
-    var tempRad = random() * 50 + 10;
+    var tempRad = random() * 80 + 30;
     var tempColor = random() * 5;
     tempColor = Math.floor(tempColor);
 
@@ -49,7 +49,7 @@ function Ball(_x, _y, _diameter, _color){
   this.x    = _x;
   this.y    = _y;
   this.color = _color;
-  this.speed = 1;
+  this.speed = 10;
 
   var xIncrease = this.speed;
   var yIncrease = this.speed;
